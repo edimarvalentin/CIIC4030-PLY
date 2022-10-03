@@ -20,6 +20,8 @@ precedence = (('left', 'COMMA'),
               ('left', 'STAR', 'SLASH'),
               )
 
+start = 'defdefs'
+
 #defdefs -> defdef defdefs
 def p_defdefs_defdef_defdefs(t):
     'defdefs : defdef defdefs'
@@ -28,7 +30,6 @@ def p_defdefs_defdef_defdefs(t):
 #defdefs -> defdef
 def p_defdefs_defdef(t):
     'defdefs : defdef'
-    p[0] = p[1]
 
 #defdef -> DEF ID LPAREN parmsopt RPAREN COLON type BECOMES LBRACE vardefsopt defdefsopt expras RBRACE
 def p_defdef_def_id(t):
@@ -53,7 +54,6 @@ def p_parms_vardef_comma_parms(t):
 #parms -> vardef
 def p_parms_vardef(t):
     'parms : vardef'
-    p[0] = p[1]
 
 #vardef -> ID COLON type
 def p_vardef_id_colon_type(t):
@@ -241,7 +241,14 @@ def p_args_expr(t):
 
 #Error rule for syntax errors
 def p_error(t):
-    print(f'Syntax error at {t.value!r}')
+    if not t:
+        print("EOF!")
+        return
+    while True:
+        tok = parser.token()
+        if not tok or tok.type=='SEMI':
+            break
+    parser.restart()
 
 #Build parser, create debugging file
 parser = yacc.yacc(debug=True)

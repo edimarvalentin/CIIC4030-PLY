@@ -67,7 +67,11 @@ def t_newline(t):
 # Ignored characters (spaces and tabs)
 t_ignore = ' \t'
 
+#Create the lex object
+lexer = lex.lex()
+
 #Opens the source code and creates the tokens
+"""
 with open('TEST_program.txt', 'r') as file:
 	lexer = lex.lex()
 	source = file.read()
@@ -77,4 +81,4 @@ with open('TEST_program.txt', 'r') as file:
 		if not tok:
 			break
 		print(tok)
-
+"""
