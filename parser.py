@@ -4,238 +4,260 @@ import ply.yacc as yacc
 
 from lexi import tokens
 
+# Set up a logging object
+import logging
+logging.basicConfig(
+        level = logging.DEBUG,
+        filename= "parselog.txt",
+        filemode = "w",
+        format = "%(filename)0s:%(lineno)4d:%(message)s"
+        )
+
+log = logging.getLogger()
+
+precedence = (('left', 'COMMA'),
+              ('left', 'PLUS', 'MINUS'), 
+              ('left', 'STAR', 'SLASH'),
+              )
+
 #defdefs -> defdef defdefs
-def p_defdefs_defdef_defdefs(p):
+def p_defdefs_defdef_defdefs(t):
     'defdefs : defdef defdefs'
     pass
 
 #defdefs -> defdef
-def p_defdefs_defdef(p):
+def p_defdefs_defdef(t):
     'defdefs : defdef'
     p[0] = p[1]
 
 #defdef -> DEF ID LPAREN parmsopt RPAREN COLON type BECOMES LBRACE vardefsopt defdefsopt expras RBRACE
-def p_defdef_def_id(p):
+def p_defdef_def_id(t):
     'defdef : DEF ID LPAREN parmsopt RPAREN COLON type BECOMES LBRACE vardefsopt defdefsopt expras RBRACE'
     pass
 
 #parmsopt -> parms
-def p_parmsopt_parms(p):
+def p_parmsopt_parms(t):
     'parmsopt : parms'
     pass
 
 #parmsopt ->
-def p_parmsopt(p):
+def p_parmsopt(t):
     'parmsopt :'
     pass
 
 #parms -> vardef COMMA parms
-def p_parms_vardef_comma_parms(p):
+def p_parms_vardef_comma_parms(t):
     'parms : vardef COMMA parms'
     pass
 
 #parms -> vardef
-def p_parms_vardef(p):
+def p_parms_vardef(t):
     'parms : vardef'
     p[0] = p[1]
 
 #vardef -> ID COLON type
-def p_vardef_id_colon_type(p):
+def p_vardef_id_colon_type(t):
     'vardef : ID COLON type'
     pass
 
 #type -> INT
-def p_type_int(p):
+def p_type_int(t):
     'type : INT'
-    p[0] = p[1]
+    pass
 
 #type -> LPAREN typesopt RPAREN ARROW type
-def p_type_laparen_typesopt_rparen_arrow_type(p):
+def p_type_laparen_typesopt_rparen_arrow_type(t):
     'type : LPAREN typesopt RPAREN ARROW type'
     pass
 
 #typesopt -> types
-def p_typesopt_types(p):
+def p_typesopt_types(t):
     'typesopt : types'
-    p[0] = p[1]
+    pass
 
 #typesopt ->
-def p_typesopt(p):
+def p_typesopt(t):
     'typesopt :'
     pass
 
 #types -> type COMMA types
-def p_types_type_COMMA_types(p):
+def p_types_type_COMMA_types(t):
     'types : type COMMA types'
     pass
 
 #types -> type
-def p_types_type(p):
+def p_types_type(t):
     'types : type'
-    p[0] = p[1]
+    pass
 
 #vardefsopt ->  VAR vardef SEMI vardefsopt
-def p_vardefsopt_var_vardef_semi_vardefsopt(p):
+def p_vardefsopt_var_vardef_semi_vardefsopt(t):
     'vardefsopt : VAR vardef SEMI vardefsopt'
     pass
 
 #vardefsopt -> 
-def p_vardefsopt(p):
+def p_vardefsopt(t):
     'vardefsopt :'
     pass
 
 #defdefsopt -> defdefs
-def p_defdefsopt_defdef(p):
+def p_defdefsopt_defdef(t):
     'defdefsopt : defdefs'
     pass
 
 #defdefsopt ->
-def p_defdefsopt(p):
+def p_defdefsopt(t):
     'defdefsopt :'
     pass
 
 #expras -> expra SEMI expras
-def p_expras_expra_semi_expras(p):
+def p_expras_expra_semi_expras(t):
     'expras : expra SEMI expras'
     pass
 
 #expras -> expra
-def p_expras_expra(p):
+def p_expras_expra(t):
     'expras : expra'
-    p[0] = p[1]
+    pass
 
 #expra -> ID BECOMES expr
-def p_expra_id_becomes_expr(p):
+def p_expra_id_becomes_expr(t):
     'expra : ID BECOMES expr'
     pass
 
 #expra -> expr
-def p_expra_expr(p):
+def p_expra_expr(t):
     'expra : expr'
-    p[0] = p[1]
+    pass
 
 #expr -> IF LPAREN test RPAREN LBRACE expras RBRACE ELSE LBRACE expras RBRACE
-def p_expr_if_lparen_test(p):
+def p_expr_if_lparen_test(t):
     'expr : IF LPAREN test RPAREN LBRACE expras RBRACE ELSE LBRACE expras RBRACE'
     pass
 
 #expr -> term
-def p_expr_term(p):
+def p_expr_term(t):
     'expr : term'
-    p[0] = p[1]
+    pass
 
 #expr -> expr  PLUS term
-def p_expr_plus_term(p):
+def p_expr_plus_term(t):
     'expr : expr PLUS term'
-    p[0] = p[1] + p[3]
 
 #expr -> expr MINUS term
-def p_expr_minus_term(p):
+def p_expr_minus_term(t):
     'expr : expr MINUS term'
-    p[0] = p[1] - p[3]
+    pass
 
 #term -> factor
-def p_term_factor(p):
+def p_term_factor(t):
     'term : factor'
-    p[0] = p[1]
+    pass
 
 #term -> term STAR factor
-def p_term_star(p):
+def p_term_star(t):
     'term : term STAR factor'
-    p[0] = p[1] * p[3]
+    pass
 
 #term -> term SLASH factor
-def p_term_slash(p):
+def p_term_slash(t):
     'term : term SLASH factor'
-    p[0] = p[1] / p[3]
+    pass
 
 #term -> term PCT factor
-def p_term_pct(p):
+def p_term_pct(t):
     'term : term PCT factor'
     pass
 
 #factor -> ID
-def p_factor_id(p):
+def p_factor_id(t):
     'factor : ID'
-    p[0] = p[1]
+    pass
 
 #factor -> NUM
-def p_factor_num(p):
+def p_factor_num(t):
     'factor : NUM'
-    p[0] = p[1]
+    pass
 
 #factor -> LPAREN expr RPAREN
-def p_factor_lparen_expr_rparen(p):
+def p_factor_lparen_expr_rparen(t):
     'factor : LPAREN expr RPAREN'
-    p[0] = p[2]
+    pass
 
 #factor -> factor LPAREN argsopt RPAREN
-def p_factor_factor_lparen_argsopt_rparen(p):
+def p_factor_factor_lparen_argsopt_rparen(t):
     'factor : factor LPAREN argsopt RPAREN'
     pass
 
 #test -> expr NE expr
-def p_test_expr_ne_expr(p):
+def p_test_expr_ne_expr(t):
     'test : expr NE expr'
     pass
 
 #test -> expr LT expr
-def p_test_expr_lt_expr(p):
+def p_test_expr_lt_expr(t):
     'test : expr LT expr'
     pass
 
 #test -> expr LE expr
-def p_test_expr_le_expr(p):
+def p_test_expr_le_expr(t):
     'test : expr LE expr'
     pass
 
 #test -> expr GE expr
-def p_test_expr_ge_expr(p):
+def p_test_expr_ge_expr(t):
     'test : expr GE expr'
     pass
 
 #test -> expr GT expr
-def p_test_expr_gt_expr(p):
+def p_test_expr_gt_expr(t):
     'test : expr GT expr'
     pass
 
 #test -> expr EQ expr
-def p_test_expr_eq_expr(p):
+def p_test_expr_eq_expr(t):
     'test : expr EQ expr'
     pass
 
 #argsopt -> args
-def p_argsopt_args(p):
+def p_argsopt_args(t):
     'argsopt : args'
     pass
 
 #argsopt - >
-def p_argspot(p):
+def p_argspot(t):
     'argsopt :'
     pass
 
 #args -> expr COMMA args
-def p_expr_comma_args(p):
+def p_expr_comma_args(t):
     'expr : expr COMMA args'
     pass
 
 #args -> expr
-def p_args_expr(p):
+def p_args_expr(t):
     'args : expr'
-    p[0] = p[1]
+    pass
 
 #Error rule for syntax errors
-def p_error(p):
-    print("Syntax error")
+def p_error(t):
+    print(f'Syntax error at {t.value!r}')
 
-#Build parser
-parser = yacc.yacc()
+#Build parser, create debugging file
+parser = yacc.yacc(debug=True)
+#Open and parse the file
+"""
+with open('Test_program.txt', 'r') as file:
+    source = file.read()
+    result = parser.parse(source)
+    print(result)
+"""
 
 while True:
     try:
-        s = input('calc >')
+        s = input('calc > ')
     except EOFError:
         break
     if not s: continue
-    result = parser.parse(s)
+    result = parser.parse(s, debug=log)
     print(result)

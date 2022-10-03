@@ -1,0 +1,29 @@
+yacc.py: 362:PLY: PARSE DEBUG START
+yacc.py: 410:
+yacc.py: 411:State  : 0
+yacc.py: 434:Stack  : . LexToken(ID,'a',9,0)
+yacc.py: 579:Error  : . LexToken(ID,'a',9,0)
+yacc.py: 410:
+yacc.py: 411:State  : 0
+yacc.py: 434:Stack  : . LexToken(BECOMES,'=',9,2)
+yacc.py: 579:Error  : . LexToken(BECOMES,'=',9,2)
+yacc.py: 410:
+yacc.py: 411:State  : 0
+yacc.py: 434:Stack  : . LexToken(ID,'b',9,4)
+yacc.py: 579:Error  : . LexToken(ID,'b',9,4)
+yacc.py: 410:
+yacc.py: 411:State  : 0
+yacc.py: 434:Stack  : . LexToken(PLUS,'+',9,6)
+yacc.py: 579:Error  : . LexToken(PLUS,'+',9,6)
+yacc.py: 410:
+yacc.py: 411:State  : 0
+yacc.py: 434:Stack  : . LexToken(ID,'c',9,8)
+yacc.py: 579:Error  : . LexToken(ID,'c',9,8)
+yacc.py: 410:
+yacc.py: 411:State  : 0
+yacc.py: 434:Stack  : . LexToken(SEMI,';',9,9)
+yacc.py: 579:Error  : . LexToken(SEMI,';',9,9)
+yacc.py: 410:
+yacc.py: 411:State  : 0
+yacc.py: 434:Stack  : . $end
+yacc.py: 579:Error  : . $end
