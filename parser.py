@@ -1,4 +1,4 @@
-#Author: Edimar Valentin Kery <edimar.valentin@upr.edu>
+# Author: Edimar Valentin Kery <edimar.valentin@upr.edu>
 
 import ply.yacc as yacc
 
@@ -7,252 +7,369 @@ from lexi import tokens
 # Set up a logging object
 import logging
 logging.basicConfig(
-        level = logging.DEBUG,
-        filename= "parselog.txt",
-        filemode = "w",
-        format = "%(filename)0s:%(lineno)4d:%(message)s"
-        )
+    level=logging.DEBUG,
+    filename="parselog.txt",
+    filemode="w",
+    format="%(filename)0s:%(lineno)4d:%(message)s"
+)
 
 log = logging.getLogger()
 
 precedence = (('left', 'COMMA'),
-              ('left', 'PLUS', 'MINUS'), 
+              ('left', 'PLUS', 'MINUS'),
               ('left', 'STAR', 'SLASH'),
               )
 
 start = 'defdefs'
 
-#defdefs -> defdef defdefs
+# defdefs -> defdef defdefs
+
+
 def p_defdefs_defdef_defdefs(t):
     'defdefs : defdef defdefs'
     pass
 
-#defdefs -> defdef
+# defdefs -> defdef
+
+
 def p_defdefs_defdef(t):
     'defdefs : defdef'
 
-#defdef -> DEF ID LPAREN parmsopt RPAREN COLON type BECOMES LBRACE vardefsopt defdefsopt expras RBRACE
+# defdef -> DEF ID LPAREN parmsopt RPAREN COLON type BECOMES LBRACE vardefsopt defdefsopt expras RBRACE
+
+
 def p_defdef_def_id(t):
     'defdef : DEF ID LPAREN parmsopt RPAREN COLON type BECOMES LBRACE vardefsopt defdefsopt expras RBRACE'
-    pass
+    if not isinstance(t[12], int) and not t[7] == 'Int':
+        print("type or expras is not Int type")
+        return
 
-#parmsopt -> parms
+# parmsopt -> parms
+
+
 def p_parmsopt_parms(t):
     'parmsopt : parms'
     pass
 
-#parmsopt ->
+# parmsopt ->
+
+
 def p_parmsopt(t):
     'parmsopt :'
     pass
 
-#parms -> vardef COMMA parms
+# parms -> vardef COMMA parms
+
+
 def p_parms_vardef_comma_parms(t):
     'parms : vardef COMMA parms'
     pass
 
-#parms -> vardef
+# parms -> vardef
+
+
 def p_parms_vardef(t):
     'parms : vardef'
 
-#vardef -> ID COLON type
+# vardef -> ID COLON type
+
+
 def p_vardef_id_colon_type(t):
     'vardef : ID COLON type'
     pass
 
-#type -> INT
+# type -> INT
+
+
 def p_type_int(t):
     'type : INT'
     pass
 
-#type -> LPAREN typesopt RPAREN ARROW type
+# type -> LPAREN typesopt RPAREN ARROW type
+
+
 def p_type_laparen_typesopt_rparen_arrow_type(t):
     'type : LPAREN typesopt RPAREN ARROW type'
     pass
 
-#typesopt -> types
+# typesopt -> types
+
+
 def p_typesopt_types(t):
     'typesopt : types'
     pass
 
-#typesopt ->
+# typesopt ->
+
+
 def p_typesopt(t):
     'typesopt :'
     pass
 
-#types -> type COMMA types
+# types -> type COMMA types
+
+
 def p_types_type_COMMA_types(t):
     'types : type COMMA types'
     pass
 
-#types -> type
+# types -> type
+
+
 def p_types_type(t):
     'types : type'
     pass
 
-#vardefsopt ->  VAR vardef SEMI vardefsopt
+# vardefsopt ->  VAR vardef SEMI vardefsopt
+
+
 def p_vardefsopt_var_vardef_semi_vardefsopt(t):
     'vardefsopt : VAR vardef SEMI vardefsopt'
     pass
 
-#vardefsopt -> 
+# vardefsopt ->
+
+
 def p_vardefsopt(t):
     'vardefsopt :'
     pass
 
-#defdefsopt -> defdefs
+# defdefsopt -> defdefs
+
+
 def p_defdefsopt_defdef(t):
     'defdefsopt : defdefs'
     pass
 
-#defdefsopt ->
+# defdefsopt ->
+
+
 def p_defdefsopt(t):
     'defdefsopt :'
     pass
 
-#expras -> expra SEMI expras
+# expras -> expra SEMI expras
+
+
 def p_expras_expra_semi_expras(t):
     'expras : expra SEMI expras'
-    pass
+    if type(t[0]) != type(t[3]):
+        print("expras is not of type child expras")
+        return
 
-#expras -> expra
+# expras -> expra
+
+
 def p_expras_expra(t):
     'expras : expra'
-    pass
+    if type(t[0]) != type(t[1]):
+        print("expras is not of type expra")
+        return
 
-#expra -> ID BECOMES expr
+# expra -> ID BECOMES expr
+
+
 def p_expra_id_becomes_expr(t):
     'expra : ID BECOMES expr'
     pass
 
-#expra -> expr
+# expra -> expr
+
+
 def p_expra_expr(t):
     'expra : expr'
     pass
 
-#expr -> IF LPAREN test RPAREN LBRACE expras RBRACE ELSE LBRACE expras RBRACE
+# expr -> IF LPAREN test RPAREN LBRACE expras RBRACE ELSE LBRACE expras RBRACE
+
+
 def p_expr_if_lparen_test(t):
     'expr : IF LPAREN test RPAREN LBRACE expras RBRACE ELSE LBRACE expras RBRACE'
-    pass
+    if type(t[6]) != type[t[10]] and not isinstance(t[0], int):
+        print(" expr derives IF LPAREN test RPAREN LBRACE exprasRBRACE ELSE LBRACE expras RBRACE, the type of the two exprs derived from test must be Int, the types of the two child expras must be the same, and the type of the resulting expr is the type of the two child expras")
+        return
 
-#expr -> term
+# expr -> term
+
+
 def p_expr_term(t):
     'expr : term'
-    pass
+    if type(t[0]) != type(t[1]):
+        print("The type of an expr that derives a term is not the type of the term.")
+        return
 
-#expr -> expr  PLUS term
+# expr -> expr  PLUS term
+
+
 def p_expr_plus_term(t):
     'expr : expr PLUS term'
+    if isinstance(t[0], int) and isinstance(t[1], int) and isinstance(t[3], int):
+        print("expr: expr PLUS term is not of type int")
+        return
 
-#expr -> expr MINUS term
+
+# expr -> expr MINUS term
 def p_expr_minus_term(t):
     'expr : expr MINUS term'
-    pass
+    if isinstance(t[0], int) and isinstance(t[1], int) and isinstance(t[3], int):
+        print("expr: expr MINUS term is not of type int")
+        return
 
-#term -> factor
+# term -> factor
+
+
 def p_term_factor(t):
     'term : factor'
-    pass
+    if type(t[0]) != type(t[1]):
+        print("The type of a term that derives a factor is not the type of the factor.")
+        return
 
-#term -> term STAR factor
+# term -> term STAR factor
+
+
 def p_term_star(t):
     'term : term STAR factor'
-    pass
+    if isinstance(t[0], int) and isinstance(t[1], int) and isinstance(t[3], int):
+        print("term STAR factor is not of type int")
+        return
 
-#term -> term SLASH factor
+# term -> term SLASH factor
+
+
 def p_term_slash(t):
     'term : term SLASH factor'
     pass
 
-#term -> term PCT factor
+# term -> term PCT factor
+
+
 def p_term_pct(t):
     'term : term PCT factor'
     pass
 
-#factor -> ID
+# factor -> ID
+
+
 def p_factor_id(t):
     'factor : ID'
-    pass
+    # The type of a factor deriving an ID is the type of that ID.
+    if type(t[0]) != type(t[1]):
+        print("Error in types")
+        return
 
-#factor -> NUM
+# factor -> NUM
+
+
 def p_factor_num(t):
     'factor : NUM'
+    if (isinstance(t[0], int)):
+        print("Factor deriving a NUM is not Int")
+        return
     pass
 
-#factor -> LPAREN expr RPAREN
+
+# factor -> LPAREN expr RPAREN
 def p_factor_lparen_expr_rparen(t):
     'factor : LPAREN expr RPAREN'
-    pass
+    if type(t[0]) != type(t[2]):
+        print(
+            "The type of a factor deriving LPAREN expr RPAREN is not the type of the expr")
+        return
 
-#factor -> factor LPAREN argsopt RPAREN
+# factor -> factor LPAREN argsopt RPAREN
+
+
 def p_factor_factor_lparen_argsopt_rparen(t):
     'factor : factor LPAREN argsopt RPAREN'
     pass
 
-#test -> expr NE expr
+# test -> expr NE expr
+
+
 def p_test_expr_ne_expr(t):
     'test : expr NE expr'
     pass
 
-#test -> expr LT expr
+# test -> expr LT expr
+
+
 def p_test_expr_lt_expr(t):
     'test : expr LT expr'
     pass
 
-#test -> expr LE expr
+# test -> expr LE expr
+
+
 def p_test_expr_le_expr(t):
     'test : expr LE expr'
     pass
 
-#test -> expr GE expr
+# test -> expr GE expr
+
+
 def p_test_expr_ge_expr(t):
     'test : expr GE expr'
     pass
 
-#test -> expr GT expr
+# test -> expr GT expr
+
+
 def p_test_expr_gt_expr(t):
     'test : expr GT expr'
     pass
 
-#test -> expr EQ expr
+# test -> expr EQ expr
+
+
 def p_test_expr_eq_expr(t):
     'test : expr EQ expr'
     pass
 
-#argsopt -> args
+# argsopt -> args
+
+
 def p_argsopt_args(t):
     'argsopt : args'
     pass
 
-#argsopt - >
+# argsopt - >
+
+
 def p_argspot(t):
     'argsopt :'
     pass
 
-#args -> expr COMMA args
+# args -> expr COMMA args
+
+
 def p_expr_comma_args(t):
     'expr : expr COMMA args'
     pass
 
-#args -> expr
+# args -> expr
+
+
 def p_args_expr(t):
     'args : expr'
     pass
 
-#Error rule for syntax errors
+# Error rule for syntax errors
+
+
 def p_error(t):
     if not t:
         print("EOF!")
         return
     while True:
         tok = parser.token()
-        if not tok or tok.type=='SEMI':
+        if not tok or tok.type == 'SEMI':
             break
     parser.restart()
 
-#Build parser, create debugging file
+
+# Build parser, create debugging file
 parser = yacc.yacc(debug=True)
-#Open and parse the file
+# Open and parse the file
 """
 with open('Test_program.txt', 'r') as file:
     source = file.read()
@@ -265,6 +382,7 @@ while True:
         s = input('calc > ')
     except EOFError:
         break
-    if not s: continue
+    if not s:
+        continue
     result = parser.parse(s, debug=log)
     print(result)
