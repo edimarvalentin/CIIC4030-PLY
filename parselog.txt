@@ -1,0 +1,90 @@
+yacc.py: 362:PLY: PARSE DEBUG START
+yacc.py: 410:
+yacc.py: 411:State  : 0
+yacc.py: 434:Stack  : . LexToken(ID,'sss',1,0)
+yacc.py: 579:Error  : . LexToken(ID,'sss',1,0)
+yacc.py: 410:
+yacc.py: 411:State  : 0
+yacc.py: 434:Stack  : . $end
+yacc.py: 579:Error  : . $end
+yacc.py: 362:PLY: PARSE DEBUG START
+yacc.py: 410:
+yacc.py: 411:State  : 0
+yacc.py: 434:Stack  : . LexToken(ID,'ss',1,0)
+yacc.py: 579:Error  : . LexToken(ID,'ss',1,0)
+yacc.py: 410:
+yacc.py: 411:State  : 0
+yacc.py: 434:Stack  : . $end
+yacc.py: 579:Error  : . $end
+yacc.py: 362:PLY: PARSE DEBUG START
+yacc.py: 410:
+yacc.py: 411:State  : 0
+yacc.py: 434:Stack  : . LexToken(ID,'ss',1,0)
+yacc.py: 579:Error  : . LexToken(ID,'ss',1,0)
+yacc.py: 410:
+yacc.py: 411:State  : 0
+yacc.py: 434:Stack  : . $end
+yacc.py: 579:Error  : . $end
+yacc.py: 362:PLY: PARSE DEBUG START
+yacc.py: 410:
+yacc.py: 411:State  : 0
+yacc.py: 434:Stack  : . LexToken(ID,'sss',1,0)
+yacc.py: 579:Error  : . LexToken(ID,'sss',1,0)
+yacc.py: 410:
+yacc.py: 411:State  : 0
+yacc.py: 434:Stack  : . $end
+yacc.py: 579:Error  : . $end
+yacc.py: 362:PLY: PARSE DEBUG START
+yacc.py: 410:
+yacc.py: 411:State  : 0
+yacc.py: 434:Stack  : . LexToken(ID,'sss',1,0)
+yacc.py: 579:Error  : . LexToken(ID,'sss',1,0)
+yacc.py: 410:
+yacc.py: 411:State  : 0
+yacc.py: 434:Stack  : . $end
+yacc.py: 579:Error  : . $end
+yacc.py: 362:PLY: PARSE DEBUG START
+yacc.py: 410:
+yacc.py: 411:State  : 0
+yacc.py: 434:Stack  : . LexToken(ID,'sss',1,0)
+yacc.py: 579:Error  : . LexToken(ID,'sss',1,0)
+yacc.py: 410:
+yacc.py: 411:State  : 0
+yacc.py: 434:Stack  : . $end
+yacc.py: 579:Error  : . $end
+yacc.py: 362:PLY: PARSE DEBUG START
+yacc.py: 410:
+yacc.py: 411:State  : 0
+yacc.py: 434:Stack  : . LexToken(ID,'C',1,2)
+yacc.py: 579:Error  : . LexToken(ID,'C',1,2)
+yacc.py: 410:
+yacc.py: 411:State  : 0
+yacc.py: 434:Stack  : . $end
+yacc.py: 579:Error  : . $end
+yacc.py: 362:PLY: PARSE DEBUG START
+yacc.py: 410:
+yacc.py: 411:State  : 0
+yacc.py: 434:Stack  : . LexToken(NUM,2,1,0)
+yacc.py: 579:Error  : . LexToken(NUM,2,1,0)
+yacc.py: 410:
+yacc.py: 411:State  : 0
+yacc.py: 434:Stack  : . $end
+yacc.py: 579:Error  : . $end
+yacc.py: 362:PLY: PARSE DEBUG START
+yacc.py: 410:
+yacc.py: 411:State  : 0
+yacc.py: 434:Stack  : . LexToken(ID,'x',1,0)
+yacc.py: 579:Error  : . LexToken(ID,'x',1,0)
+yacc.py: 410:
+yacc.py: 411:State  : 0
+yacc.py: 434:Stack  : . $end
+yacc.py: 579:Error  : . $end
+yacc.py: 362:PLY: PARSE DEBUG START
+yacc.py: 410:
+yacc.py: 411:State  : 0
+yacc.py: 434:Stack  : . LexToken(ID,'x',1,0)
+yacc.py: 579:Error  : . LexToken(ID,'x',1,0)
+yacc.py: 410:
+yacc.py: 411:State  : 0
+yacc.py: 434:Stack  : . $end
+yacc.py: 579:Error  : . $end

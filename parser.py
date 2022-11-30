@@ -70,6 +70,7 @@ def p_parms_vardef_comma_parms(t):
 
 def p_parms_vardef(t):
     'parms : vardef'
+    pass
 
 # vardef -> ID COLON type
 
@@ -77,6 +78,12 @@ def p_parms_vardef(t):
 def p_vardef_id_colon_type(t):
     'vardef : ID COLON type'
     pass
+
+# vardef -> ID COLON type BECOMES expr
+
+
+def p_vardef_id_colon_type_becomes_exprs(t):
+    'vardef : ID COLON type BECOMES expr'
 
 # type -> INT
 
